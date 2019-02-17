@@ -1,45 +1,52 @@
 import React, { Component } from 'react';
-import Answer from './Answer';
+import Clue from './Clue';
 import Category from './Category';
 import Button from './Button';
-import axios from 'axios'; 
-// import './AnswerContainer.css';
+import axios from 'axios';
+// import './CluesContainer.css';
 
-class AnswerContainer extends Component {
-  constructor(props){
-    super(props); 
+class CluesContainer extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      categories : [], 
+      category: '',
+      question: '',
+      answer: '',
       error: false
-    }
-    this.getClues = this.getClues.bind(this)
+    };
+    this.getClues = this.getClues.bind(this);
   }
 
- async getClues(){
+  async getClues() {
     try {
-      const data = await axios.get('http://jservice.io/api/random'); 
-      console.log('DATA', data); 
-    } catch (error){
+      const data = await axios.get('http://jservice.io/api/random');
+      let clueInfo = data.data[0];
+      let category = clueInfo.category.title;
+      let question = clueInfo.question;
+      let answer = clueInfo.answer;
+
+      this.setState({ category: category, question: question, answer: answer });
+    } catch (error) {
       this.setState({
         error: true
-      })
+      });
     }
   }
   static defaultProps = {};
 
-  async componentDidMount(){
-    this.getClues(); 
+  componentDidMount() {
+    this.getClues();
   }
   render() {
     return (
-      <div className="AnswerContainer">
-        <h1>"hey this is the answer container component"</h1>
+      <div className="CluesContainer">
+        <h1>"hey this is the Clues container component"</h1>
         <Category />
-        <Answer />
+        <Clue />
         <Button />
       </div>
     );
   }
 }
 
-export default AnswerContainer;
+export default CluesContainer;
