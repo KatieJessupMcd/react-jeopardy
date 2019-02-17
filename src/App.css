@@ -1,33 +1,37 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+body {
+  font-family: itc korinna;
   color: white;
+  text-shadow: 3px 3px black;
+  background-color: rgb(0, 27, 121);
 }
 
-.App-link {
-  color: #61dafb;
+.jumbotron {
+  background-color: rgb(0, 27, 121);
+  height: 500px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h1 {
+  font-family: gyparody;
+  color: rgb(238, 206, 94);
 }
+
+#answer-display {
+  min-height: 86px;
+}
+
+#question {
+  max-height: 300px;
+}
+
+.btn-primary {
+  color: rgb(238, 206, 94);
+  background-color: rgb(0, 27, 121);
+  border-color: rgb(0, 27, 121);
+}
+
+.btn-primary:hover {
+  color: white;
+  background-color: rgb(0, 27, 121);
+  border-color: rgb(0, 27, 121);
+}
+
