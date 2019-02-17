@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 class Clue extends Component {
   static defaultProps = {};
   render() {
-    return <div className='Clue'>
-    <h2>This is the Clue component</h2>
+    return <div className="Clue display-4 text-center p-5" id="question">
+    {this.props.question}
     </div>;
   }
 }

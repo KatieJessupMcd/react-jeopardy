@@ -3,6 +3,7 @@ import Clue from './Clue';
 import Category from './Category';
 import Button from './Button';
 import axios from 'axios';
+import Answer from './Answer';
 // import './CluesContainer.css';
 
 class CluesContainer extends Component {
@@ -37,13 +38,23 @@ class CluesContainer extends Component {
   componentDidMount() {
     this.getClues();
   }
+
   render() {
+    let { category, question, answer } = this.state;
     return (
-      <div className="CluesContainer">
-        <h1>"hey this is the Clues container component"</h1>
-        <Category />
-        <Clue />
-        <Button />
+      <div>
+        <div className="jumbotron CluesContainer">
+          <h1 className="display-3 text-center">Jeopardy!</h1>
+          <Category category={category} />
+          <Clue question={question} />
+        </div>
+        <div className="container-fluid text-center">
+          <Answer answer={answer} />
+        </div>
+        <div className="row text-center">
+          <Button name="Display Answer"id="answer-display-button"/>
+          <Button name="New Question" id="new-question-button"/>
+        </div>
       </div>
     );
   }

@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 class Category extends Component {
   static defaultProps = {};
   render() {
-    return <div className='Category'>
-    <h3>this is the category</h3>
+    return <div className="Category display-5 text-center" id="category-display">
+    Category: {this.props.category}
     </div>;
   }
 }
