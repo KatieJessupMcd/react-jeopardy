@@ -18,7 +18,6 @@ class CluesContainer extends Component {
     };
     this.getClues = this.getClues.bind(this);
     this.showAnswer = this.showAnswer.bind(this);
-    this.handleClick = this.handleClick.bind(this);
   }
 
   async getClues() {
@@ -29,7 +28,7 @@ class CluesContainer extends Component {
       let question = clueInfo.question;
       let answer = clueInfo.answer;
 
-      this.setState({ category: category, question: question, answer: answer });
+      this.setState({ category: category, question: question, answer: answer, displayAnswer: false, error: false });
     } catch (error) {
       this.setState({
         error: true
@@ -38,13 +37,13 @@ class CluesContainer extends Component {
   }
 
   showAnswer() {
-    this.setState({ displayAnswer: !this.state.displayAnswer });
+    this.setState({ displayAnswer: true });
   }
 
-  handleClick() {
-    console.log('clicked the button YO');
-    this.showAnswer();
+  newQuestion() {
+    this.getClues();  
   }
+
 
   componentDidMount() {
     this.getClues();
@@ -58,29 +57,32 @@ class CluesContainer extends Component {
           <h1 className="display-3 text-center">Jeopardy!</h1>
           <Category category={category} />
           <Clue question={question} />
-        <div className="row" style={{ minHeight: '15rem' }}>
-          <div className="col-12 text-center">
-            <Answer displayAnswer={this.state.displayAnswer} answer={answer} />
+          <div className="row" style={{ minHeight: '15rem' }}>
+            <div className="col-12 text-center">
+              <Answer
+                displayAnswer={this.state.displayAnswer}
+                answer={answer}
+              />
+            </div>
           </div>
-        </div>
-        <div className="row fixed-row-bottom text-center">
-          <div className="col text-center">
-            <button
-              onClick={this.handleClick}
-              id="answer-display-button"
-              className="Button col-6 btn btn-primary btn-lg"
-            >
-              Display Answer
-            </button>
-            <button
-              onClick={this.handleClick}
-              id="new-question-button"
-              className="Button col-6 btn btn-primary btn-lg"
-            >
-              New Question
-            </button>
+          <div className="row fixed-row-bottom text-center">
+            <div className="col text-center">
+              <button
+                onClick={() => this.showAnswer()}
+                id="answer-display-button"
+                className="Button col-6 btn btn-primary btn-lg"
+              >
+                Display Answer
+              </button>
+              <button
+                onClick={() => this.newQuestion()}
+                id="new-question-button"
+                className="Button col-6 btn btn-primary btn-lg"
+              >
+                New Question
+              </button>
+            </div>
           </div>
-        </div>
         </div>
       </div>
     );
