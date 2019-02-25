@@ -2,9 +2,19 @@ import React, { Component } from 'react';
 // import './Answer.css';
 
 class Answer extends Component {
-  static defaultProps = {};
+  
   render() {
-    return <div className="Answer display-4 my-5" id="answer-display">{this.props.answer}</div>;
+    if (this.props.displayAnswer){
+      return (
+        <div className="Answer" id="answer-display" style={{fontSize: '2rem'}}>{this.props.answer}</div>
+      ) 
+    } else {
+      return (
+        <div></div>
+      )
+    }
+    
+    
   }
 }
 

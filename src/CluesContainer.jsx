@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Clue from './Clue';
 import Category from './Category';
-import Button from './Button';
+// import Button from './Button';
 import axios from 'axios';
 import Answer from './Answer';
 // import './CluesContainer.css';
@@ -13,9 +13,12 @@ class CluesContainer extends Component {
       category: '',
       question: '',
       answer: '',
+      displayAnswer: false,
       error: false
     };
     this.getClues = this.getClues.bind(this);
+    this.showAnswer = this.showAnswer.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   async getClues() {
@@ -33,7 +36,15 @@ class CluesContainer extends Component {
       });
     }
   }
-  static defaultProps = {};
+
+  showAnswer() {
+    this.setState({ displayAnswer: !this.state.displayAnswer });
+  }
+
+  handleClick() {
+    console.log('clicked the button YO');
+    this.showAnswer();
+  }
 
   componentDidMount() {
     this.getClues();
@@ -47,13 +58,29 @@ class CluesContainer extends Component {
           <h1 className="display-3 text-center">Jeopardy!</h1>
           <Category category={category} />
           <Clue question={question} />
+        <div className="row" style={{ minHeight: '15rem' }}>
+          <div className="col-12 text-center">
+            <Answer displayAnswer={this.state.displayAnswer} answer={answer} />
+          </div>
         </div>
-        <div className="container-fluid text-center">
-          <Answer answer={answer} />
+        <div className="row fixed-row-bottom text-center">
+          <div className="col text-center">
+            <button
+              onClick={this.handleClick}
+              id="answer-display-button"
+              className="Button col-6 btn btn-primary btn-lg"
+            >
+              Display Answer
+            </button>
+            <button
+              onClick={this.handleClick}
+              id="new-question-button"
+              className="Button col-6 btn btn-primary btn-lg"
+            >
+              New Question
+            </button>
+          </div>
         </div>
-        <div className="row text-center">
-          <Button name="Display Answer"id="answer-display-button"/>
-          <Button name="New Question" id="new-question-button"/>
         </div>
       </div>
     );
